@@ -11,7 +11,8 @@ GENPOP To-Do List:
     - [x] LEDs: set-up and switching between
     - [ ] LEDs: potential visual to volume control?
 
-- [ ] VOL: Control the volume (digi potentiometer?)
+- [ ] VOL: Control the volume (digi potentiometer?) 
+    - [ ]  VOL: collect digital encoder 
 - [ ] BUILT-IN AUDIO: Audio messages (Blink, Signal)
 
 - [ ] TBA
