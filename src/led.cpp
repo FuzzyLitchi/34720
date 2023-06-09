@@ -17,7 +17,7 @@ int userbuttonCount(){
 
      if(!digitalRead(USER_BTN) == 1){
 
-        delay(1500);
+        delay(1000);
 
         if(!digitalRead(USER_BTN) == 1){
             clicks++;

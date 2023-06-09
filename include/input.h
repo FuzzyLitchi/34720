@@ -1,0 +1,3 @@
+
+void setupJack();
+void inputDetect();
