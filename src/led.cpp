@@ -6,9 +6,10 @@ void setupLED()
 {
   pinMode(LED1_PIN, OUTPUT); // initialize LED digital pin as an output.
   pinMode(LED2_PIN, OUTPUT);
-  pinMode(LED3_PIN, OUTPUT);
 
-  pinMode(USER_BTN, INPUT_PULLDOWN); // initialize userbutton
+//   pinMode(LED3_PIN, OUTPUT);
+//   pinMode(USER_BTN, INPUT_PULLDOWN); // initialize userbutton
+
 }
 
 int userbuttonCount(){
@@ -31,28 +32,25 @@ void LEDon(int LED){
         case 1:
             digitalWrite(LED1_PIN, HIGH);
             digitalWrite(LED2_PIN, LOW);
-            digitalWrite(LED3_PIN, LOW);
+            // digitalWrite(LED3_PIN, LOW);
             break;
         case 2:
             digitalWrite(LED1_PIN, LOW);
             digitalWrite(LED2_PIN, HIGH);
-            digitalWrite(LED3_PIN, LOW);
+            // digitalWrite(LED3_PIN, LOW);
             break;
         case 3:
             digitalWrite(LED1_PIN, LOW);
             digitalWrite(LED2_PIN, LOW);
-            digitalWrite(LED3_PIN, HIGH);
+            // digitalWrite(LED3_PIN, HIGH);
             break;
         default:
             digitalWrite(LED1_PIN, LOW);
             digitalWrite(LED2_PIN, LOW);
-            digitalWrite(LED3_PIN, LOW);
+            // digitalWrite(LED3_PIN, LOW);
             break;
     }
 }
-
-// bottom function debounces button (as best as I can), then toggles LED
-// 
 void LEDloop(int input){
 
     int inputState = input;

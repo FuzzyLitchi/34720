@@ -1,25 +1,47 @@
 #include "Arduino.h"
+#include "input.h"
 
 void setupJack(){
     pinMode(PIN_A0,INPUT);
     pinMode(PIN_A1,INPUT);
 }
 
+void setupPWM(){
+    pinMode(D9,OUTPUT);
+}
+
 void inputDetect(){
 
-    float rightChannelSignal;
-    float leftChannelSignal;
+    int rightChannelSignal;
+    int leftChannelSignal;
 
     rightChannelSignal = analogRead(PIN_A0);
     leftChannelSignal = analogRead(PIN_A1);
-
-    leftChannelSignal = leftChannelSignal * 3300; // Change the value to be in the 0 to 3300 range
-    rightChannelSignal = rightChannelSignal * 3300; // Change the value to be in the 0 to 3300 range
         
-    printf("L Channel = %.0f mV\n", leftChannelSignal);
-    printf("R Channel = %.0f mV\n", rightChannelSignal);
-
+   // printf("L Channel = %d mV\n", leftChannelSignal);
+   // printf("%d\n", rightChannelSignal);
 }
+
+// float standardDev(float data[]){
+//     float sum = 0.0, mean, standardDeviation = 0.0;
+//     int i;
+
+//   for(i = 0; i < 10; ++i) {
+//     sum += data[i];
+//   }
+
+//   mean = sum / 10;
+
+//   for(i = 0; i < 10; ++i) {
+//     standardDeviation += pow(data[i] - mean, 2);
+//   }
+
+//   return sqrt(standardDeviation / 10);
+// }
+
+
+
+
 
 
 
