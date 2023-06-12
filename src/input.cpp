@@ -6,10 +6,6 @@ void setupJack(){
     pinMode(PIN_A1,INPUT);
 }
 
-void setupPWM(){
-    pinMode(D9,OUTPUT);
-}
-
 void inputDetect(){
 
     int rightChannelSignal;
