@@ -6,26 +6,59 @@
  */
 #include "Arduino.h"
 
-// Set LED_BUILTIN if it is not defined by Arduino framework
-// #define LED_BUILTIN 13
+#define ENCODER_A D3
+#define ENCODER_B D4
 
-void setup()
-{
-  // initialize LED digital pin as an output.
-  pinMode(LED_BUILTIN, OUTPUT);
+int prev_a;
+int prev_b;
+int volume;
+
+void encoderInterrupt() {
+  int a = digitalRead(ENCODER_A);
+  int b = digitalRead(ENCODER_B);
+
+  // Check that the values actually are different
+  if (a != prev_a || b != prev_b) {
+    // Check that the move isn't illegal (we ignore the move in this case)
+    if (a != prev_a && b != prev_b) {
+      // This is illegal so update the values and return
+      prev_a = a;
+      prev_b = b;
+      return;
+    }
+
+    // Legal moves only
+    if (prev_b ^ a) {
+      // CCW
+      volume--;
+    } else {
+      // CW
+      volume++;
+    }
+  }
+
+  prev_a = a;
+  prev_b = b;
 }
 
-void loop()
-{
-  // turn the LED on (HIGH is the voltage level)
-  digitalWrite(LED_BUILTIN, HIGH);
+void setup() {
+  // Initialize the encoder
+  pinMode(ENCODER_A, INPUT_PULLUP);
+  pinMode(ENCODER_B, INPUT_PULLUP);
+  prev_a = digitalRead(ENCODER_A);
+  prev_b = digitalRead(ENCODER_B);
 
-  // wait for a second
-  delay(1000);
+  // Really we should disable interrupts until both of them are set up.
+  // But as far as I can tell it doesn't really matter.
+  attachInterrupt(digitalPinToInterrupt(ENCODER_A), encoderInterrupt, CHANGE);
+  attachInterrupt(digitalPinToInterrupt(ENCODER_B), encoderInterrupt, CHANGE);
 
-  // turn the LED off by making the voltage LOW
-  digitalWrite(LED_BUILTIN, LOW);
+  volume = 10;
+}
 
-   // wait for a second
-  delay(1000);
+void loop() {
+  while (1) {
+    // printf("Volume: %d\r\n", volume);
+    delay(1);
+  }
 }
