@@ -6,6 +6,8 @@
  */
 #include "Arduino.h"
 
+#include "potentiometer.h"
+
 #define ENCODER_A D3
 #define ENCODER_B D4
 
@@ -27,7 +29,7 @@ void encoderInterrupt() {
       return;
     }
 
-    // Legal moves only
+    // Here we only consider legal moves only
     if (prev_b ^ a) {
       // CCW
       volume--;
@@ -54,11 +56,19 @@ void setup() {
   attachInterrupt(digitalPinToInterrupt(ENCODER_B), encoderInterrupt, CHANGE);
 
   volume = 10;
+
+  init_potentiometer();
 }
 
 void loop() {
   while (1) {
     // printf("Volume: %d\r\n", volume);
-    delay(1);
+    printf("Setting it to 511\r\n");
+    set_potentiometer(129);
+
+    delay(3000);
+    printf("Setting it to 0\r\n");
+    set_potentiometer(0);
+    delay(3000);
   }
 }
